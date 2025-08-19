@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conoce tus Derechos  - Soluciones Jurídicas Empresariales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #0891b2;
+    --accent-color: #4b5563;
+    --white: #ffffff;
+    --light-gray: #f9fafb;
+    --text-gray: #4b5563;
+    --dark-gray: #374151;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text-gray);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    color: var(--dark-gray);
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 0.8rem 0; /* Corregido el valor de padding que tenía un error */
+}
+
+nav.container {
+    display: flex;
+    justify-content: flex-start; /* Cambiado de space-between a flex-start */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    top: -20px;
+    margin-top: 10px;
+}
+
+.logo {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 2rem; /* Aumentado el margen derecho */
+    flex-shrink: 0; /* Evita que el logo se reduzca */
+    margin-bottom: 5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem; /* Aumentado el espacio entre enlaces */
+    margin: 0 auto; /* Centra los enlaces en el espacio disponible */
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+    display: flex;
+    align-items: center; /* Centra verticalmente el texto */
+    height: 100%;
+}
+
+/* Para dispositivos grandes donde se muestra el menú completo */
+@media (min-width: 993px) {
+    nav.container {
+        justify-content: flex-start;
+    }
+    
+    .nav-links {
+        margin-left: 2rem; /* Espacio adicional después del logo */
+    }
+}
+
+/* Para dispositivos medianos */
+@media (max-width: 992px) {
+    .logo {
+        margin-right: auto; /* Empuja el logo a la izquierda y el hamburguesa a la derecha */
+    }
+    
+    .nav-links {
+        display: none; /* Oculta los enlaces en móviles */
+    }
+}
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Social Icons en Header */
+.header-social-icons {
+    display: flex;
+    gap: 0.8rem;
+    margin-left: 2rem;
+}
+
+.header-social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(8, 145, 178, 0.1);
+    border-radius: 50%;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    text-decoration: none; /* Asegura no subrayado */
+}
+
+.header-social-icons a:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--primary-color);
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transition: .25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2),
+.hamburger span:nth-child(3) { top: 10px; }
+.hamburger span:nth-child(4) { top: 20px; }
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    padding: 80px 30px 30px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.mobile-menu.open {
+    right: 0;
+}
+
+.mobile-menu .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mobile-menu .nav-links a {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    text-decoration: none;
+    padding: 0.5rem 0;
+}
+
+/* Overlay para menú móvil */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* CTA Button */
+.cta-button {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(8, 145, 178, 0.8), rgba(75, 85, 99, 0.7)),
+                url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 120px 0 80px;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.3s forwards;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero .cta-button {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.6s forwards;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* About Section */
+.about {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Services Section */
+.services {
+    padding: 80px 0;
+    background: var(--light-gray);
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Services Carousel con Imágenes */
+.services-carousel {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.services-carousel h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.services-carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.services-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.service-carousel-slide {
+    min-width: 100%;
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.service-carousel-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    padding: 2rem;
+    background: rgba(8, 145, 178, 0.9);
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 2rem;
+}
+
+.service-carousel-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.service-carousel-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.services-carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.services-carousel-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--text-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.services-carousel-dot.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.carousel-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(8, 145, 178, 0.8);
+    color: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.carousel-arrows:hover {
+    background: var(--primary-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+    left: 20px;
+}
+
+.carousel-next {
+    right: 20px;
+}
+
+/* Testimonials Carousel */
+.testimonials {
+    padding: 80px 0;
+    background: var(--light-gray);
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 0px;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    background: var(--white);
+    padding: 3rem;
+    text-align: center;
+}
+
+.carousel-slide p {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-slide .client-name {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--text-gray);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: var(--primary-color);
+}
+
+/* Stats Section */
+.stats {
+    padding: 80px 0;
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    font-size: 1.1rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 80px 0;
+    background: var(--light-gray);
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.contact-info {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-item i {
+    color: var(--primary-color);
+    margin-right: 1rem;
+    width: 20px;
+}
+
+.contact-form {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background: var(--dark-gray);
+    color: var(--white);
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    color: #d1d5db;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    transition: all 0.3s ease;
+    text-decoration: none; /* Sin subrayado */
+}
+
+.social-icons a:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #4b5563;
+    color: #9ca3af;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .nav-links,
+    .header-social-icons {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    nav.container {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .header-social-icons {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-carousel-content {
+        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+
+    .service-carousel-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-arrows {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .carousel-prev {
+        left: 10px;
+    }
+
+    .carousel-next {
+        right: 10px;
+    }
+
+}
+    .logo {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo i {
+    font-size: 1.6rem; /* Tamaño ligeramente menor para mejor proporción */
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.logo:hover i {
+    transform: scale(1.1); /* Efecto sutil al hacer hover */
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+ <header>
+        <nav class="container">
+           <div class="logo">
+  <span>Guia</span>
+  <i class="fas fa-balance-scale" style="color: #7dd3fc; margin: 0 5px;"></i>
+  <span>Legal</span>
+</div>
+            
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#servicios-carousel">Especialidades</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="header-social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="nav-links">
+            <li><a href="#inicio" onclick="closeMobileMenu()">Inicio</a></li>
+            <li><a href="#nosotros" onclick="closeMobileMenu()">Nosotros</a></li>
+            <li><a href="#servicios" onclick="closeMobileMenu()">Servicios</a></li>
+            <li><a href="#servicios-carousel" onclick="closeMobileMenu()">Especialidades</a></li>
+            <li><a href="#testimonios" onclick="closeMobileMenu()">Testimonios</a></li>
+            <li><a href="#contacto" onclick="closeMobileMenu()">Contacto</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>Transformando Soluciones Legales </h1>
+            <p>conoce tus derechos via online </p>
+            <a href="#contacto" class="cta-button">Comienza Hoy</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Información en derecho</h2>
+                    <p>En conoce tus derechos, encontraras información básica y documento legales, para orientar acerca de nuestros derechos y conocimiento jurídico.</p>
+                    <p>El conocimiento de la ley es la mejor herramienta para la justicia cotidiana Este espacio es tu primer paso hacia la seguridad jurídica personal y familiar.</p>
+                    <a href="#servicios" class="cta-button">Conoce Nuestros Servicios</a>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="derecho.jpg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="fade-in">Nuestros Servicios </h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <i class="fas fa-building"></i>
+                    <h3>Derecho Corporativo</h3>
+                    <p>Constitución de empresas, fusiones, adquisiciones y reestructuraciones corporativas con el más alto nivel de profesionalismo.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Propiedad Intelectual</h3>
+                    <p>Protección de marcas, patentes, derechos de autor y secretos comerciales para salvaguardar tus activos intangibles.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Negociación de Contratos</h3>
+                    <p>Redacción, revisión y negociación de contratos comerciales que protejan tus intereses empresariales.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-gavel"></i>
+                    <h3>Soporte en Litigios</h3>
+                    <p>Representación legal experta en disputas comerciales, laborales y civiles con resultados exitosos.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Cumplimiento Regulatorio</h3>
+                    <p>Asesoría en normativas sectoriales, protección de datos y compliance empresarial integral.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-users"></i>
+                    <h3>Derecho Laboral</h3>
+                    <p>Gestión de relaciones laborales, contratos de trabajo y resolución de conflictos empleador-empleado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  Nuevo carrusel de servicios con imágenes jurídicas -->
+    <section id="servicios-carousel" class="services-carousel">
+        <div class="container">
+            <h2 class="fade-in">Nuestras Especialidades Legales</h2>
+            <div class="services-carousel-container">
+                <div class="services-carousel-track" id="servicesCarousel">
+                    <div class="service-carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Derecho Corporativo">
+                        <div class="service-carousel-content">
+                            <h3>Derecho Corporativo</h3>
+                            <p>Especialistas en constitución de empresas, fusiones y adquisiciones. Brindamos asesoría integral para el crecimiento y reestructuración de tu negocio con estrategias legales innovadoras.</p>
+                        </div>
+                    </div>
+                    <div class="service-carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Contratos Comerciales">
+                        <div class="service-carousel-content">
+                            <h3>Contratos Comerciales</h3>
+                            <p>Redacción y negociación de contratos que protejan tus intereses. Desde acuerdos comerciales hasta alianzas estratégicas, aseguramos términos favorables para tu empresa.</p>
+                        </div>
+                    </div>
+                    <div class="service-carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Propiedad Intelectual">
+                        <div class="service-carousel-content">
+                            <h3>Propiedad Intelectual</h3>
+                            <p>Protección integral de marcas, patentes y derechos de autor. Salvaguardamos tus activos intangibles y defendemos tu propiedad intelectual en el mercado global.</p>
+                        </div>
+                    </div>
+                    <div class="service-carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Litigios Comerciales">
+                        <div class="service-carousel-content">
+                            <h3>Litigios Comerciales</h3>
+                            <p>Representación experta en disputas comerciales y civiles. Nuestro equipo de litigantes experimentados defiende tus intereses con estrategias legales efectivas.</p>
+                        </div>
+                    </div>
+                    <div class="service-carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Compliance Regulatorio">
+                        <div class="service-carousel-content">
+                            <h3>Compliance Regulatorio</h3>
+                            <p>Asesoría en cumplimiento normativo y protección de datos. Mantenemos tu empresa actualizada con las regulaciones vigentes y minimizamos riesgos legales.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-arrows carousel-prev" onclick="prevServicesSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-arrows carousel-next" onclick="nextServicesSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="services-carousel-nav">
+                    <span class="services-carousel-dot active" data-slide="0"></span>
+                    <span class="services-carousel-dot" data-slide="1"></span>
+                    <span class="services-carousel-dot" data-slide="2"></span>
+                    <span class="services-carousel-dot" data-slide="3"></span>
+                    <span class="services-carousel-dot" data-slide="4"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h3>500+</h3>
+                    <p>Casos Exitosos</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>15+</h3>
+                    <p>Años de Experiencia</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>98%</h3>
+                    <p>Satisfacción del Cliente</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>24/7</h3>
+                    <p>Soporte Disponible</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section id="testimonios" class="testimonials">
+        <div class="container">
+            <h2 class="fade-in">Lo que Dicen Nuestros Clientes</h2>
+            <div class="carousel-container">
+                <div class="carousel" id="testimonialCarousel">
+                    <div class="carousel-slide">
+                        <p>"La experiencia y orientación proporcionada fueron invaluables para nuestra startup. Su enfoque profesional nos ayudó a evitar costosos errores legales."</p>
+                        <div class="client-name">- María González, CEO TechStart</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"Un socio confiable en asuntos legales. Su equipo siempre está disponible y proporciona soluciones prácticas a problemas complejos."</p>
+                        <div class="client-name">- Carlos Rodríguez, Director Comercial</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"Servicio profesional y receptivo. Nos ayudaron a expandir nuestro negocio internacionalmente con total confianza legal."</p>
+                        <div class="client-name">- Ana Martínez, Fundadora ExportPlus</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <p>"Excelente asesoría en propiedad intelectual. Protegieron nuestras innovaciones y nos dieron la tranquilidad que necesitábamos."</p>
+                        <div class="client-name">- Roberto Silva, CTO InnovaTech</div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <span class="carousel-dot active" data-slide="0"></span>
+                    <span class="carousel-dot" data-slide="1"></span>
+                    <span class="carousel-dot" data-slide="2"></span>
+                    <span class="carousel-dot" data-slide="3"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="fade-in">¿Listo para Discutir tus Necesidades Legales?</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Av. Reforma 123, Col. Centro<br>Ciudad de México, CDMX 06000</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 55 1234 5678</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contacto@legalpro.mx</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun - Vie: 9:00 AM - 7:00 PM<br>Sáb: 9:00 AM - 2:00 PM</span>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa" name="empresa">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio de Interés</label>
+                            <select id="servicio" name="servicio" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 5px;">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="corporativo">Derecho Corporativo</option>
+                                <option value="propiedad">Propiedad Intelectual</option>
+                                <option value="contratos">Negociación de Contratos</option>
+                                <option value="litigios">Soporte en Litigios</option>
+                                <option value="compliance">Cumplimiento Regulatorio</option>
+                                <option value="laboral">Derecho Laboral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe brevemente tu consulta legal..."></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Enviar Consulta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LegalPro</h3>
+                    <p>Tu socio confiable en soluciones legales empresariales. Transformamos desafíos legales en oportunidades de crecimiento.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="#servicios">Derecho Corporativo</a>
+                    <a href="#servicios">Propiedad Intelectual</a>
+                    <a href="#servicios">Contratos</a>
+                    <a href="#servicios">Litigios</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#testimonios">Testimonios</a>
+                    <a href="#contacto">Contacto</a>
+                    <a href="#">Casos de Éxito</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Aviso Legal</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LegalPro. Todos los derechos reservados. | Diseñado para el éxito empresarial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        function closeMobileMenu() {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+
+        overlay.addEventListener('click', closeMobileMenu);
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        function checkScroll() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Services Carousel
+        let currentServicesSlide = 0;
+        const servicesSlides = document.querySelectorAll('.service-carousel-slide');
+        const servicesDots = document.querySelectorAll('.services-carousel-dot');
+        const servicesTrack = document.getElementById('servicesCarousel');
+
+        function updateServicesCarousel() {
+            servicesTrack.style.transform = `translateX(-${currentServicesSlide * 100}%)`;
+            
+            servicesDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentServicesSlide);
+            });
+        }
+
+        function nextServicesSlide() {
+            currentServicesSlide = (currentServicesSlide + 1) % servicesSlides.length;
+            updateServicesCarousel();
+        }
+
+        function prevServicesSlide() {
+            currentServicesSlide = (currentServicesSlide - 1 + servicesSlides.length) % servicesSlides.length;
+            updateServicesCarousel();
+        }
+
+        servicesDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                currentServicesSlide = parseInt(this.getAttribute('data-slide'));
+                updateServicesCarousel();
+            });
+        });
+
+        // Auto-advance services carousel
+        setInterval(nextServicesSlide, 5000);
+
+        // Testimonials Carousel
+        let currentTestimonialSlide = 0;
+        const testimonialSlides = document.querySelectorAll('.carousel-slide');
+        const testimonialDots = document.querySelectorAll('.carousel-dot');
+        const testimonialTrack = document.getElementById('testimonialCarousel');
+
+        function updateTestimonialCarousel() {
+            testimonialTrack.style.transform = `translateX(-${currentTestimonialSlide * 100}%)`;
+            
+            testimonialDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTestimonialSlide);
+            });
+        }
+
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                currentTestimonialSlide = parseInt(this.getAttribute('data-slide'));
+                updateTestimonialCarousel();
+            });
+        });
+
+        // Auto-advance testimonials carousel
+        setInterval(() => {
+            currentTestimonialSlide = (currentTestimonialSlide + 1) % testimonialSlides.length;
+            updateTestimonialCarousel();
+        }, 6000);
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Gracias por tu consulta. Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
