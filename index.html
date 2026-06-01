@@ -163,7 +163,14 @@
       .a3d { animation-duration: 120s !important; }
     }
 
-    /* ═══════ MOBILE ═══════ */
+    /* ═══════ DESKTOP: Velocidad reducida (giro pausado) ══════ */
+    @media (min-width: 1025px) {
+      .a3d {
+        animation-duration: 34s !important; /* ✅ Desktop: 34s (mucho más lento y elegante) */
+      }
+    }
+
+    /* ═══════ MOBILE ══════ */
     @media (max-width: 800px) {
       .section-title h2 { font-size: clamp(1.1rem, 4vw, 1.5rem); }
       .carousels-group { gap: 0; }
@@ -206,7 +213,7 @@
 
     <div class="carousel-wrapper">
       <div class="scene">
-        <div class="a3d" style="--n: 20; animation-direction: reverse; animation-duration: 27s;">
+        <div class="a3d" style="--n: 20; animation-direction: reverse;">
           <div class="card" style="--i: 0"><img src="logo/1.png"  alt="Img 1"  loading="lazy"></div>
           <div class="card" style="--i: 1"><img src="logo/2.png"  alt="Img 2"  loading="lazy"></div>
           <div class="card" style="--i: 2"><img src="logo/3.png"  alt="Img 3"  loading="lazy"></div>
@@ -233,7 +240,7 @@
 
     <div class="carousel-wrapper">
       <div class="scene">
-        <div class="a3d" style="--n: 19; animation-duration: 27s;">
+        <div class="a3d" style="--n: 19;">
           <div class="card" style="--i: 0"><img src="logo/21.png" alt="Img 21" loading="lazy"></div>
           <div class="card" style="--i: 1"><img src="logo/22.png" alt="Img 22" loading="lazy"></div>
           <div class="card" style="--i: 2"><img src="logo/23.png" alt="Img 23" loading="lazy"></div>
