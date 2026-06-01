@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Carruseles 3D Integrados</title>
+  <title>Universidades Aliadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -17,7 +18,6 @@
       width: 100%;
       overflow: hidden;
       background: #ffffff;
-      font-family: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
     }
 
     body {
@@ -28,14 +28,40 @@
       background: #ffffff;
     }
 
+    /* ── Título ── */
+    .section-title {
+      text-align: center;
+      padding: 0 1rem 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .section-title h2 {
+      font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #1a2a3a;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+
+    .section-title .title-line {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, #1a2a3a, #4a7ab5);
+      border-radius: 2px;
+      margin: 0.5rem auto 0;
+    }
+
+    /* ── Carruseles ── */
     .carousels-group {
       display: flex;
       flex-direction: column;
-      gap: 14vh; /* separación en desktop */
+      gap: 14vh;
     }
 
     .carousel-wrapper {
-      height: 42vh;
+      height: 38vh;
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -71,7 +97,7 @@
       place-self: center;
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
-      animation: ry 28s linear infinite;
+      animation: ry 27s linear infinite;
       will-change: transform;
       grid-area: 1 / 1;
     }
@@ -99,7 +125,6 @@
       will-change: transform;
       overflow: hidden;
       background: #fff;
-      /* Sin preserve-3d en la card: evita que los hijos participen en el espacio 3D */
       transform-style: flat;
       -webkit-transform-style: flat;
       transform:
@@ -108,8 +133,6 @@
       position: relative;
     }
 
-    /* Img: posición absoluta cubriendo la card con margen negativo.
-       Sin ningún transform — elimina el glitch por completo. */
     .card img {
       position: absolute;
       top: -8%;
@@ -140,8 +163,9 @@
       .a3d { animation-duration: 120s !important; }
     }
 
-    /* ═══════ MOBILE: igual que antes, sin gap ═══════ */
+    /* ═══════ MOBILE ═══════ */
     @media (max-width: 800px) {
+      .section-title h2 { font-size: clamp(1.1rem, 4vw, 1.5rem); }
       .carousels-group { gap: 0; }
       .carousel-wrapper { height: 36vh; }
       .card  { --w: 14.5em; }
@@ -172,12 +196,17 @@
 </head>
 <body>
 
+  <!-- Título de sección -->
+  <div class="section-title">
+    <h2>Universidades Aliadas</h2>
+    <span class="title-line"></span>
+  </div>
+
   <div class="carousels-group">
 
     <div class="carousel-wrapper">
       <div class="scene">
-        <!-- Carrusel 1: reverso, 11s -->
-        <div class="a3d" style="--n: 20; animation-direction: reverse; animation-duration: 12s;">
+        <div class="a3d" style="--n: 20; animation-direction: reverse; animation-duration: 27s;">
           <div class="card" style="--i: 0"><img src="logo/1.png"  alt="Img 1"  loading="lazy"></div>
           <div class="card" style="--i: 1"><img src="logo/2.png"  alt="Img 2"  loading="lazy"></div>
           <div class="card" style="--i: 2"><img src="logo/3.png"  alt="Img 3"  loading="lazy"></div>
@@ -204,7 +233,6 @@
 
     <div class="carousel-wrapper">
       <div class="scene">
-        <!-- Carrusel 2: normal, 25s -->
         <div class="a3d" style="--n: 19; animation-duration: 27s;">
           <div class="card" style="--i: 0"><img src="logo/21.png" alt="Img 21" loading="lazy"></div>
           <div class="card" style="--i: 1"><img src="logo/22.png" alt="Img 22" loading="lazy"></div>
