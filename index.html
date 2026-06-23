@@ -11,6 +11,7 @@
       padding: 0;
       box-sizing: border-box;
       user-select: none;
+      -webkit-user-select: none;
     }
 
     html, body {
@@ -67,9 +68,15 @@
       overflow: hidden;
       position: relative;
       background: #ffffff;
+      touch-action: pan-y;
+      cursor: grab;
     }
 
-    /* Línea divisoria mejorada: más separación en desktop */
+    .carousel-wrapper.dragging {
+      cursor: grabbing;
+    }
+
+    /* Línea divisoria mejorada */
     .carousel-wrapper::after {
       content: '';
       position: absolute;
@@ -84,7 +91,6 @@
       transition: all 0.2s ease;
     }
     
-    /* Desktop: separación extra del primer carrusel respecto a su línea */
     @media (min-width: 1025px) {
       .carousel-wrapper:first-child {
         margin-bottom: 1.5rem;
@@ -118,14 +124,8 @@
       place-self: center;
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
-      animation: ry 27s linear infinite;
       will-change: transform;
       grid-area: 1 / 1;
-    }
-
-    @keyframes ry {
-      0%   { rotate: y 0deg; }
-      100% { rotate: y 360deg; }
     }
 
     .card {
@@ -137,7 +137,6 @@
       border-radius: 1.2em;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      /* ─── BOX-SHADOW MEJORADO PARA RESALTAR 3D ─── */
       box-shadow:
         0 35px 55px -20px rgba(0,0,0,0.6),
         0 15px 30px -12px rgba(0,0,0,0.5),
@@ -177,7 +176,6 @@
           translatez(calc(-1 * (0.5 * var(--w) + 0.5em) / tan(0.5 * var(--ba))))
           scale(1.08);
         z-index: 100;
-        /* Sombra aún más intensa al hacer hover */
         box-shadow:
           0 45px 70px -22px rgba(0,0,0,0.75),
           0 20px 35px -15px rgba(0,0,0,0.6),
@@ -187,15 +185,11 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .a3d { animation-duration: 120s !important; }
+      .a3d { transition: transform 0.5s ease; }
     }
 
-    /* ═══════ DESKTOP: Velocidad reducida + tarjetas más cuadradas (menos altura) ══════ */
+    /* ═══════ DESKTOP ══════ */
     @media (min-width: 1025px) {
-      .a3d {
-        animation-duration: 34s !important;
-      }
-      
       .carousels-group {
         gap: 10vh;
       }
@@ -205,22 +199,19 @@
         padding-bottom: 0.6rem;
       }
       
-      /* ─── TARJETAS MÁS BAJAS / CUADRADAS CON UN POCO MÁS DE ANCHO ─── */
       .card {
         --w: 13.8em;
         aspect-ratio: 4 / 5;
         border-radius: 0.9em;
       }
       
-      /* ─── ZOOM LIGERAMENTE AUMENTADO EN LAS IMÁGENES ─── */
       .card img {
-        top: -10%;      /* Más zoom: de -5% a -10% */
-        left: -12%;     /* Más zoom: de -10% a -12% */
-        width: 124%;    /* Más zoom: de 120% a 124% */
-        height: 114%;   /* Más zoom: de 110% a 114% */
+        top: -10%;
+        left: -12%;
+        width: 124%;
+        height: 114%;
       }
       
-      /* Sombra extra en desktop para resaltar */
       .card {
         box-shadow:
           0 40px 60px -22px rgba(0,0,0,0.65),
@@ -231,7 +222,6 @@
       }
     }
 
-    /* ═══════ DESKTOP GRANDE (pantallas muy anchas) ══════ */
     @media (min-width: 1440px) {
       .card {
         --w: 14.2em;
@@ -284,11 +274,10 @@
 
   <div class="carousels-group">
 
-    <!-- Primer carrusel: originalmente 20 elementos, se eliminan las imágenes 9 y 11 (índices 8 y 10 en base 0) -->
-    <div class="carousel-wrapper">
+    <!-- Primer carrusel -->
+    <div class="carousel-wrapper" data-direction="reverse">
       <div class="scene">
-        <div class="a3d" style="--n: 18; animation-direction: reverse;">
-          <!-- Se mantienen todos los logos excepto el 9 (logo/9.png) y el 11 (logo/11.png) -->
+        <div class="a3d" style="--n: 20;">
           <div class="card" style="--i: 0"><img src="logo/1.png"  alt="Img 1"  loading="lazy"></div>
           <div class="card" style="--i: 1"><img src="logo/2.png"  alt="Img 2"  loading="lazy"></div>
           <div class="card" style="--i: 2"><img src="logo/3.png"  alt="Img 3"  loading="lazy"></div>
@@ -297,9 +286,9 @@
           <div class="card" style="--i: 5"><img src="logo/6.png"  alt="Img 6"  loading="lazy"></div>
           <div class="card" style="--i: 6"><img src="logo/7.png"  alt="Img 7"  loading="lazy"></div>
           <div class="card" style="--i: 7"><img src="logo/8.png"  alt="Img 8"  loading="lazy"></div>
-        <div class="card" style="--i: 8"><img src="logo/9.png"  alt="Img 9"  loading="lazy"></div>
+          <div class="card" style="--i: 8"><img src="logo/9.png"  alt="Img 9"  loading="lazy"></div>
           <div class="card" style="--i: 9"><img src="logo/10.png" alt="Img 10" loading="lazy"></div>
-            <div class="card" style="--i: 10"><img src="logo/11.png"  alt="Img 11"  loading="lazy"></div>
+          <div class="card" style="--i: 10"><img src="logo/11.png"  alt="Img 11"  loading="lazy"></div>
           <div class="card" style="--i: 11"><img src="logo/12.png" alt="Img 12" loading="lazy"></div>
           <div class="card" style="--i: 12"><img src="logo/13.png" alt="Img 13" loading="lazy"></div>
           <div class="card" style="--i: 13"><img src="logo/14.png" alt="Img 14" loading="lazy"></div>
@@ -313,10 +302,10 @@
       </div>
     </div>
 
-    <!-- Segundo carrusel: se mantiene exactamente igual (19 elementos, sin eliminaciones) -->
-    <div class="carousel-wrapper">
+    <!-- Segundo carrusel -->
+    <div class="carousel-wrapper" data-direction="normal">
       <div class="scene">
-        <div class="a3d" style="--n: 19;">
+        <div class="a3d" style="--n: 21;">
           <div class="card" style="--i: 0"><img src="logo/21.png" alt="Img 21" loading="lazy"></div>
           <div class="card" style="--i: 1"><img src="logo/22.png" alt="Img 22" loading="lazy"></div>
           <div class="card" style="--i: 2"><img src="logo/23.png" alt="Img 23" loading="lazy"></div>
@@ -336,12 +325,126 @@
           <div class="card" style="--i: 16"><img src="logo/37.png" alt="Img 37" loading="lazy"></div>
           <div class="card" style="--i: 17"><img src="logo/38.png" alt="Img 38" loading="lazy"></div>
           <div class="card" style="--i: 18"><img src="logo/39.png" alt="Img 39" loading="lazy"></div>
-            <div class="card" style="--i: 7"><img src="logo/40.png"  alt="Img 8"  loading="lazy"></div>
+          <div class="card" style="--i: 19"><img src="logo/40.png"  alt="40"  loading="lazy"></div>
+          <div class="card" style="--i: 20"><img src="logo/41.png"  alt="Img 41"  loading="lazy"></div>
         </div>
       </div>
     </div>
 
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const isMobile = window.matchMedia('(max-width: 800px)').matches;
+      
+      // Configuración de velocidad y sensibilidad
+      // Móvil: más rápido y más sensible al arrastre
+      const baseSpeed = isMobile ? 18 : 34; // segundos para vuelta completa (menor = más rápido)
+      const sensitivity = isMobile ? 0.5 : 0.3; // grados por pixel
+      const friction = 0.95; // fricción para el momentum
+      const minVelocity = 0.1; // velocidad mínima para seguir animando
+
+      const wrappers = document.querySelectorAll('.carousel-wrapper');
+
+      wrappers.forEach(wrapper => {
+        const a3d = wrapper.querySelector('.a3d');
+        const direction = wrapper.dataset.direction === 'reverse' ? -1 : 1;
+        
+        let angle = 0;
+        let velocity = direction * (360 / baseSpeed); // velocidad base en grados/segundo
+        let isDragging = false;
+        let lastX = 0;
+        let lastTime = 0;
+        let dragVelocity = 0;
+        let animationId = null;
+        let lastFrameTime = 0;
+
+        // Función de animación principal
+        function animate(timestamp) {
+          if (!lastFrameTime) lastFrameTime = timestamp;
+          const delta = (timestamp - lastFrameTime) / 1000; // en segundos
+          lastFrameTime = timestamp;
+
+          if (!isDragging) {
+            // Aplicar fricción al velocity si hay momentum
+            if (Math.abs(dragVelocity) > minVelocity) {
+              angle += dragVelocity * delta;
+              dragVelocity *= Math.pow(friction, delta * 60);
+            } else {
+              // Volver a la velocidad base gradualmente
+              velocity += (direction * (360 / baseSpeed) - velocity) * 0.02;
+              angle += velocity * delta;
+            }
+          }
+
+          a3d.style.transform = `rotateY(${angle}deg)`;
+          animationId = requestAnimationFrame(animate);
+        }
+
+        // Iniciar animación
+        animationId = requestAnimationFrame(animate);
+
+        // Obtener posición X del evento (mouse o touch)
+        function getX(e) {
+          return e.touches ? e.touches[0].clientX : e.clientX;
+        }
+
+        // Inicio del arrastre
+        function startDrag(e) {
+          isDragging = true;
+          wrapper.classList.add('dragging');
+          lastX = getX(e);
+          lastTime = Date.now();
+          dragVelocity = 0;
+        }
+
+        // Movimiento del arrastre
+        function onDrag(e) {
+          if (!isDragging) return;
+          e.preventDefault();
+          
+          const currentX = getX(e);
+          const deltaX = currentX - lastX;
+          const now = Date.now();
+          const deltaTime = now - lastTime;
+
+          // Calcular velocidad del arrastre
+          if (deltaTime > 0) {
+            dragVelocity = (deltaX * sensitivity) / (deltaTime / 1000);
+          }
+
+          // Aplicar rotación
+          angle += deltaX * sensitivity;
+          
+          lastX = currentX;
+          lastTime = now;
+        }
+
+        // Fin del arrastre
+        function endDrag() {
+          if (!isDragging) return;
+          isDragging = false;
+          wrapper.classList.remove('dragging');
+          
+          // El dragVelocity ya está calculado y se aplicará con fricción en animate()
+        }
+
+        // Event listeners para mouse
+        wrapper.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', onDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        // Event listeners para touch
+        wrapper.addEventListener('touchstart', startDrag, { passive: true });
+        wrapper.addEventListener('touchmove', onDrag, { passive: false });
+        wrapper.addEventListener('touchend', endDrag);
+        wrapper.addEventListener('touchcancel', endDrag);
+
+        // Prevenir comportamiento por defecto en el arrastre
+        wrapper.addEventListener('dragstart', e => e.preventDefault());
+      });
+    });
+  </script>
 
 </body>
 </html>
